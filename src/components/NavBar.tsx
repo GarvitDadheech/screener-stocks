@@ -9,7 +9,10 @@ export const NavBar = () => {
                 </a>
                 <a href="#" style={{ color: '#606F7B'}} className="pt-[5px] text-sm tracking-wider">FEED</a>
                 <a href="#" style={{ color: '#606F7B' }} className="pt-[5px] text-sm tracking-wider">SCREENS</a>
-                <a href="#" style={{ color: '#606F7B' }} className="pt-[5px] text-sm tracking-wider">TOOLS</a>
+                <a href="#" style={{ color: '#606F7B' }} className="pt-[5px] text-sm tracking-wider flex gap-x-2 items-center">
+                    <div>TOOLS</div>
+                    <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
+                </a>
             </div>
             <div className='flex gap-x-2 justify-between'>
                 <div className='flex gap-x-6 justify-between items-center border border-slate-400 rounded-md mr- h-8 px-2'>
@@ -18,12 +21,13 @@ export const NavBar = () => {
                         type="text"
                         placeholder="Search for a company"
                         style={{ outline: 'none' }}
+                        className="placeholder:text-gray-500 placeholder:text-sm" 
                     />
                 </div>
                 <div className='flex gap-x-4 border border-slate-400 rounded-md items-center w-32 justify-center    cursor-pointer'>
-                    <FontAwesomeIcon icon={faUser} className="text-purple-900 text-lg" />
+                    <FontAwesomeIcon icon={faUser} className="text-purple-900 text-sm" />
                     <div>Garvit</div>
-                    <FontAwesomeIcon icon={faCaretDown} className="text-lg" />
+                    <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
                 </div>
             </div>
         </div>
