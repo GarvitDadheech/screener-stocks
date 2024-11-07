@@ -1,9 +1,10 @@
 import './App.css'
 import { BottomBar } from './components/BottomBar';
 import { NavBar } from './components/NavBar';
-import StockScreener from './components/QueryCard';
+import {StockScreener} from './components/QueryCard';
 
 const App: React.FC = () => {
+  
   return (
     <div >
       <NavBar/>
