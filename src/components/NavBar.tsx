@@ -15,18 +15,18 @@ export const NavBar = () => {
                 </a>
             </div>
             <div className='flex gap-x-2 justify-between'>
-                <div className='flex gap-x-6 justify-between items-center border border-slate-400 rounded-md mr- h-8 px-2'>
+                <div className='flex gap-x-6 justify-between items-center border border-slate-400 rounded-md mr- h-8 px-2 '>
                     <FontAwesomeIcon icon={faSearch} size="sm" color="#333" />
                     <input
                         type="text"
                         placeholder="Search for a company"
                         style={{ outline: 'none' }}
-                        className="placeholder:text-gray-500 placeholder:text-sm" 
+                        className="placeholder:text-gray-500 placeholder:text-sm w-40" 
                     />
                 </div>
-                <div className='flex gap-x-4 border border-slate-400 rounded-md items-center w-32 justify-center    cursor-pointer'>
+                <div className='flex gap-x-4 border border-slate-400 rounded-md w-32 justify-center  cursor-pointer items-center'>
                     <FontAwesomeIcon icon={faUser} className="text-purple-900 text-sm" />
-                    <div>Garvit</div>
+                    <div className='text-sm'>Garvit</div>
                     <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
                 </div>
             </div>

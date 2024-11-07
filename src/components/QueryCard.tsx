@@ -143,35 +143,38 @@ const StockScreener: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 p-4">
-      <div className={`mx-auto bg-white rounded-lg shadow-sm transition-all duration-300 ${
+    <div className="min-h-screen p-4 mt-2">
+      <div className={`mx-auto bg-white rounded-lg shadow-sm transition-all duration-300 h-[370px] ${
         filteredStocks.length > 0 
-          ? 'w-full max-w-[1400px]' 
-          : 'w-full max-w-[800px] mt-20'
+          ? 'w-full max-w-[1500px] h-full' 
+          : 'w-full max-w-[750px] mt-1'
       }`}>
         {filteredStocks.length > 0 && <StockTable stocks={filteredStocks} />}
         
-        <div className="p-6">
-          <h2 className="text-xl font-medium text-gray-800 mb-4">
-            {filteredStocks.length > 0 ? 'Create a Search Query' : 'Create a Stock Screen'}
-          </h2>
-          
-          <div className="space-y-2">
+        <div className="p-4">
+          {
+            filteredStocks.length > 0 ? (<div><h2 className="text-lg font-medium text-gray-800">Search Query
+          </h2><div className="text-sm mb-2 text-slate-700">You can customize this query below</div></div>) : (<h2 className="text-lg font-medium text-gray-800">
+            Create a Search Query
+          </h2>)
+          }
+          <div className="space-y-2 ">
             <label className="block text-sm font-medium text-gray-700">Query</label>
             <div className="flex flex-col md:flex-row gap-4">
               <textarea
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 p-3 border-2 border-gray-300 rounded-lg min-h-[120px] resize-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 w-full md:max-w-md focus:outline-none"
+                className="flex-1 p-3 border-[1px] border-gray-300 rounded-md min-h-[120px] resize-none focus:ring-[0.1px] focus:ring-indigo-500 focus:border-indigo-500 w-full md:max-w-md focus:outline-none h-[180px]"
                 placeholder="Enter your search query..."
               />
-              <div className="w-full md:w-72 bg-blue-50 rounded-lg p-4">
-                <h3 className="text-sm font-medium text-gray-800 mb-2">Query Examples</h3>
-                <div className="text-sm text-gray-600 space-y-2">
+              <div className="w-full md:w-72 bg-[#F6FAFD] rounded-lg  border border-blue-400 flex flex-col pl-6 ">
+                <h3 className="text-lg font-medium text-gray-800 mb-2 mt-5 font-serrif">Custom query example</h3>
+                <div className="text-sm text-gray-600">
                   <p>Market capitalization &gt; 500 AND</p>
                   <p>Price to earning &gt; 15 AND</p>
                   <p>Return on capital employed &lt; 22%</p>
                 </div>
+                <a href="https://www.screener.in/guides/creating-screens/" className="text-indigo-600 text-sm mt-4">Detailed guide on creating screens</a>
               </div>
             </div>
             
@@ -194,7 +197,7 @@ const StockScreener: React.FC = () => {
             </label>
           </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-between items-center">
+          <div className="mt-5 flex flex-col sm:flex-row gap-4 justify-between items-center">
             <button
               className="w-full sm:w-auto px-6 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center space-x-3"
               onClick={() => filterStocks(stocks)}
