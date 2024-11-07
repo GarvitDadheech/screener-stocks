@@ -4,7 +4,7 @@ import StockScreener from './components/QueryCard';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div >
       <NavBar/>
       <StockScreener/>
     </div>
