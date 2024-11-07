@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StockTable } from "./StockTable";
 import stocks from '../stocks.json'
 import { useState } from "react";
+import { BottomBar } from "./BottomBar";
 
 interface Stock {
   Ticker: string;
@@ -143,8 +144,9 @@ const StockScreener: React.FC = () => {
   };
 
   return (
+    <div className="">
     <div className="min-h-screen p-4 mt-2">
-      <div className={`mx-auto bg-white rounded-lg shadow-sm transition-all duration-300 h-[370px] ${
+      <div className={`mx-auto bg-white rounded-lg shadow-lg transition-all duration-300 h-[370px] ${
         filteredStocks.length > 0 
           ? 'w-full max-w-[1500px] h-full' 
           : 'w-full max-w-[750px] mt-1'
@@ -215,6 +217,10 @@ const StockScreener: React.FC = () => {
           </div>
         </div>
       </div>
+    </div>
+      {
+        filteredStocks.length>0 && <BottomBar/>
+      }
     </div>
   );
 };
