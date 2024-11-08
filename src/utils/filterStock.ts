@@ -1,6 +1,5 @@
 import { Stock } from "../types/Stock";
 
-
 function validate(str: string): boolean {
     
     const parts = str.split(/(and|or)/).map((part) => part.trim());
@@ -46,6 +45,20 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
         "grossmargin",
     ];
 
+    let AllFields = [
+        "ticker",
+        "marketcapitalization",
+        "p/eratio",
+        "peratio",
+        "debttoequityratio",
+        "debt-to-equityratio",
+        "roe",
+        "dividendyield",
+        "revenuegrowth",
+        "epsgrowth",
+        "currentratio",
+        "grossmargin",
+    ];
     if (validate(str)) {
         str = str.replace(/%/g, "");
 
@@ -60,6 +73,9 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
 
                 for (const match of matches) {
                     const field = match[1].replace(/\s+/g, "").toLowerCase();
+                    if(!AllFields.includes(field)) {
+                        throw new Error(`${field} is an invalid field!`)
+                    }
                     const operator = match[2];
                     const value = numericFields.includes(field)
                         ? parseFloat(match[3])

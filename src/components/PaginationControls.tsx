@@ -16,7 +16,7 @@ const PaginationControls = ({
         {currentPage !== 1 && (
           <button
             onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
-            className="px-3 py-1 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
+            className="px-3 py-2 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
           >
             <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
             Previous
@@ -41,7 +41,7 @@ const PaginationControls = ({
 
         <button
           onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
-          className="px-3 py-1 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
+          className="px-3 py-2 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
         >
           Next <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
         </button>

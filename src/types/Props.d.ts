@@ -17,3 +17,10 @@ export interface TableHeaderProps {
     totalResults: number;
     currentPage: number;
 }
+
+export interface StockQueryFormProps {
+    onFilterStocks: (query: string) => void;
+    error: string;
+    setQuery: React.Dispatch<React.SetStateAction<string>>;
+    query: string;
+}
