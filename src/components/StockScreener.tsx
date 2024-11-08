@@ -26,7 +26,7 @@ const StockScreener = () => {
 
   return (
     <div className="">
-      <div className="min-h-screen p-4 mt-2">
+      <div className="min-h-screen md:p-4 md:mt-2">
         <div className={`mx-auto bg-white rounded-lg shadow-lg transition-all duration-300 ${
           filteredStocks.length > 0 
             ? 'w-full max-w-[1500px] h-full' 

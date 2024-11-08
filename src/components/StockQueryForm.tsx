@@ -27,15 +27,15 @@ const StockQueryForm = ({
 
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">Query</label>
-        <div className="grid grid-cols-5 gap-4 w-full">
+        <div className="md:grid md:grid-cols-5 md:gap-4 w-full flex flex-col gap-8">
           <textarea
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="col-span-3 p-3 border-[1px] border-gray-300 rounded-md min-h-[120px] resize-none focus:ring-[0.1px] focus:ring-indigo-500 focus:border-indigo-500 w-full h-[180px] focus:outline-none"
             placeholder="Enter your search query..."
           />
-          <div className="col-span-2 w-full bg-[#F6FAFD] rounded-lg border border-blue-400 flex flex-col pl-6">
-            <h3 className="text-lg font-medium text-gray-800 mb-2 mt-5 font-serif">
+          <div className="col-span-2 w-full bg-[#F6FAFD] rounded-lg border border-blue-400 flex flex-col pl-6 mb-4 md:mb-0">
+            <h3 className="text-lg font-medium text-gray-800 mb-2 mt-5 font-serrif">
               Custom query example
             </h3>
             <div className="text-sm text-gray-600">
@@ -45,7 +45,7 @@ const StockQueryForm = ({
             </div>
             <a
               href="https://www.screener.in/guides/creating-screens/"
-              className="text-indigo-600 text-sm mt-4"
+              className="text-indigo-600 text-sm mt-4 mb-3 md:mb-0"
             >
               Detailed guide on creating screens
             </a>

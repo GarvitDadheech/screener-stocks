@@ -2,13 +2,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { StockRowProps } from '../types/Props';
 
-
-const StockRow = ({ stock, index,currFirstIndex }: StockRowProps) => {
+const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
   return (
     <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
-      <td className="px-6 py-1 text-[12.5px]">{currFirstIndex+index + 1}.</td>
-      <td className="px-6 py-1">
-        <a href="#" className="text-[12.5px] text-indigo-600 hover:text-indigo-900 font-light">
+      <td className="px-6 py-1 text-[12.5px]">{currFirstIndex + index + 1}.</td>
+      <td
+        className="px-6 py-1 text-[12.5px] text-indigo-600 font-light"
+        style={{
+          position: 'sticky',
+          left: 0,
+          backgroundColor: index % 2 === 0 ? '#F8F8FC' : 'white',
+          zIndex: 20, // Make sure the Ticker column is on top of other cells when scrolling
+        }}
+      >
+        <a href="#" className="hover:text-indigo-900">
           {stock.Ticker}
         </a>
       </td>

@@ -11,8 +11,8 @@ const PaginationControls = ({
   itemsPerPage,
 }: PaginationControlsProps) => {
   return (
-    <div className="px-6 py-2 flex justify-between items-center mt-7">
-      <div className="flex items-center border border-slate-300 rounded-md h-full">
+    <div className="px-6 py-2 flex-col md:flex-row flex space-y-5 justify-between items-center mt-7">
+      <div className="flex items-center border border-slate-300 rounded-md h-full flex-wrap">
         {currentPage !== 1 && (
           <button
             onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}

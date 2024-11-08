@@ -17,24 +17,24 @@ export const BottomBar = () => {
             <a href="https://www.screener.in/" className="mt-4 underline">Terms & Privacy.</a>
         </div>
       </div>
-        <div className='flex mr-20 gap-x-16'>
-      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2 md:ml-16">
+        <div className='flex md:mr-20 gap-x-6 md:gap-x-16 mt-6 md:mt-0 justify-between'>
+      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2 md:ml-16 mt-2 md:mt-0">
         <span className="font-semibold text-gray-900 mb-2">Product</span>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500">Premium</a>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500">What's new?</a>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500">Learn</a>
-        <button className="flex items-center border border-blue-500 text-indigo-500 tracking-wider py-1 px-3 rounded-lg">
+        <button className="flex items-center border border-blue-500 text-indigo-500 tracking-wider py-1 px-1 md:px-3 rounded-lg">
           <FontAwesomeIcon icon={faBoltLightning} className='mr-3 text-xs'/> INSTALL
         </button>
       </div>
 
-      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 md:ml-16">
+      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 md:ml-16 p-2 md:p-0">
         <span className="font-semibold text-gray-900 mb-2">Team</span>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500">About us</a>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500">Support</a>
       </div>
 
-      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 md:ml-16">
+      <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 md:ml-16 p-2 md:p-0">
         <span className="font-semibold text-gray-900 mb-2">Theme</span>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500"><FontAwesomeIcon icon={faSun} className='mr-3 text-xs'/>Light</a>
         <a href="https://www.screener.in/" className="hover:text-indigo-500 text-[12.5px] text-gray-500"><FontAwesomeIcon icon={faMoon} className='mr-3 text-xs'/>Dark</a>
