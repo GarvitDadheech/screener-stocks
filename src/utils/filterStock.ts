@@ -1,20 +1,8 @@
-interface Stock {
-    Ticker: string;
-    "Market Capitalization (B)": number;
-    P: {
-      "E Ratio": number;
-    };
-    "ROE (%)": number;
-    "Debt-to-Equity Ratio": number;
-    "Dividend Yield (%)": number;
-    "Revenue Growth (%)": number;
-    "EPS Growth (%)": number;
-    "Current Ratio": number;
-    "Gross Margin (%)": number;
-  }
-  function validate(str: string): boolean {
-    const pattern = /^([a-zA-Z\s\/\-]+)([<>=])(-?[a-zA-Z0-9]+(\.\d+)?%?)(and|or)?$/;
+import { Stock } from "../types/Stock";
 
+
+function validate(str: string): boolean {
+    
     const parts = str.split(/(and|or)/).map((part) => part.trim());
 
     if (parts.length % 2 === 0) {
@@ -61,29 +49,27 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
     if (validate(str)) {
         str = str.replace(/%/g, "");
 
-        // Adjust regex to capture all matches at once
         const regex: RegExp = /([a-zA-Z\s\/\-]+)([<>=])([-]?[a-zA-Z0-9]+(\.\d+)?)/g;
 
-        // Split into condition parts and operators
         const parts = str.split(/(and|or)/).map((part) => part.trim());
 
         for (let i = 0; i < parts.length; i++) {
-            if (i % 2 === 0) { // This is a condition part
+            if (i % 2 === 0) {
                 const part = parts[i];
-                const matches = [...part.matchAll(regex)]; // Get all matches for conditions
+                const matches = [...part.matchAll(regex)];
 
                 for (const match of matches) {
                     const field = match[1].replace(/\s+/g, "").toLowerCase();
                     const operator = match[2];
                     const value = numericFields.includes(field)
                         ? parseFloat(match[3])
-                        : match[3]; // Parse as float if numeric field
+                        : match[3]; 
 
                     a.push(field);
                     b.push(operator);
                     c.push(value);
                 }
-            } else if (parts[i]) { // This is an operator part
+            } else if (parts[i]) { 
                 d.push(parts[i]);
             }
         }
@@ -91,7 +77,7 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
         throw new Error("Invalid query format");
     }
 
-    let results: Stock[] = []; // Final result
+    let results: Stock[] = []; 
 
     for (let i = 0; i < a.length; i++) {
         const field = a[i];
@@ -100,7 +86,7 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
         if (field === 'ticker') {
             value = value.toString().toUpperCase();
         }
-        // Define filtering function based on condition
+        
         const filterCondition = (stock: Stock) => {
             let stockValue: any;
             switch (field) {
@@ -140,7 +126,6 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
                     throw new Error(`Invalid field: ${field}`);
             }
 
-            // Apply comparison operator
             if (typeof value === 'number') {
                 if (operator === '>') return stockValue > value;
                 if (operator === '<') return stockValue < value;
@@ -149,19 +134,18 @@ export const filterLogic = (query: string, stocks: Stock[]): Stock[] => {
                 return operator === '=' && stockValue === value;
             }
         };
-        // Apply logic based on the previous operator (AND or OR)
+        
         if (i === 0 || d[i - 1] === 'or') {
-            // OR Logic: Filter from full stocks array
             const newResults = stocks.filter(filterCondition);
             results = [...new Set([...results, ...newResults])];
         } else if (d[i-1] === 'and') {
-            // AND Logic: Filter within current result set
             results = results.filter(filterCondition);
         }
     }
-    console.log(a,b,c,d);
+
     if(results.length==0) {
         throw new Error("No such record found!");
     }
+
     return results;
 };
