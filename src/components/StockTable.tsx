@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Stock} from '../types/Stock'
 import { usePagination } from '../hooks/usePagination';
 import PaginationControls from './PaginationControls';
+import StockRow from './StockRow';
 
 export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
   const {
@@ -67,71 +68,8 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
               </tr>
             </thead>
             <tbody>
-              {currentData.map((stock: Stock, index: number) => (
-                <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
-                  <td className="px-6 py-1 text-[12.5px]">
-                    {currentItems.indexOfFirstItem + index + 1}.
-                  </td>
-                  <td className="px-6 py-1">
-                    <a href="#" className="text-[12.5px] text-indigo-600 hover:text-indigo-900 font-light">
-                      {stock.Ticker}
-                    </a>
-                  </td>
-                  <td className="px-6 text-[12.5px] text-gray-900 text-right">
-                    {stock["Market Capitalization (B)"].toFixed(2)}
-                  </td>
-                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {stock.P["E Ratio"].toFixed(2)}
-                  </td>
-                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {(stock["Current Ratio"].toFixed(2))}
-                  </td>
-                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {stock["Debt-to-Equity Ratio"].toFixed(2)}
-                  </td>
-                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {stock["Dividend Yield (%)"].toFixed(2)}
-                  </td>
-                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {stock["Gross Margin (%)"].toFixed(2)}
-                  </td>
-                  <td className="px-6 py-1 text-right">
-                    <div className="flex items-center justify-end">
-                      {stock["Revenue Growth (%)"] > 0 ? (
-                        <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
-                      ) : (
-                        <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
-                      )}
-                      <span className={`text-[12.5px] ${stock["Revenue Growth (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {stock["Revenue Growth (%)"].toFixed(2)}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-1 text-right">
-                    <div className="flex items-center justify-end">
-                      {stock["EPS Growth (%)"] > 0 ? (
-                        <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
-                      ) : (
-                        <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
-                      )}
-                      <span className={`text-[12.5px] ${stock["EPS Growth (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {stock["EPS Growth (%)"].toFixed(2)}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-1 text-right">
-                    <div className="flex items-center justify-end">
-                      {stock["ROE (%)"] > 0 ? (
-                        <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
-                      ) : (
-                        <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
-                      )}
-                      <span className={`text-[12.5px] ${stock["ROE (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                        {stock["ROE (%)"].toFixed(2)}
-                      </span>
-                    </div>
-                  </td>
-                </tr>
+              {currentData.map((stock, index) => (
+                <StockRow key={stock.Ticker} stock={stock} index={index} currFirstIndex={currentItems.indexOfFirstItem}/>
               ))}
             </tbody>
           </table>
