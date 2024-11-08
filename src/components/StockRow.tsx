@@ -1,18 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { StockRowProps } from '../types/Props';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { StockRowProps } from "../types/Props";
 
 const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
   return (
-    <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
+    <tr key={stock.Ticker} className={index % 2 === 0 ? "bg-[#F8F8FC]" : ""}>
       <td className="px-6 py-1 text-[12.5px]">{currFirstIndex + index + 1}.</td>
       <td
         className="px-6 py-1 text-[12.5px] text-indigo-600 font-light"
         style={{
-          position: 'sticky',
+          position: "sticky",
           left: 0,
-          backgroundColor: index % 2 === 0 ? '#F8F8FC' : 'white',
-          zIndex: 20, // Make sure the Ticker column is on top of other cells when scrolling
+          backgroundColor: index % 2 === 0 ? "#F8F8FC" : "white",
+          zIndex: 20,
         }}
       >
         <a href="#" className="hover:text-indigo-900">
@@ -44,7 +44,13 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           ) : (
             <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
           )}
-          <span className={`text-[12.5px] ${stock["Revenue Growth (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`text-[12.5px] ${
+              stock["Revenue Growth (%)"] > 0
+                ? "text-green-500"
+                : "text-red-500"
+            }`}
+          >
             {stock["Revenue Growth (%)"].toFixed(2)}
           </span>
         </div>
@@ -56,7 +62,11 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           ) : (
             <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
           )}
-          <span className={`text-[12.5px] ${stock["EPS Growth (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`text-[12.5px] ${
+              stock["EPS Growth (%)"] > 0 ? "text-green-500" : "text-red-500"
+            }`}
+          >
             {stock["EPS Growth (%)"].toFixed(2)}
           </span>
         </div>
@@ -68,7 +78,11 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           ) : (
             <FontAwesomeIcon icon={faArrowDown} className="text-xs mr-1" />
           )}
-          <span className={`text-[12.5px] ${stock["ROE (%)"] > 0 ? 'text-green-500' : 'text-red-500'}`}>
+          <span
+            className={`text-[12.5px] ${
+              stock["ROE (%)"] > 0 ? "text-green-500" : "text-red-500"
+            }`}
+          >
             {stock["ROE (%)"].toFixed(2)}
           </span>
         </div>

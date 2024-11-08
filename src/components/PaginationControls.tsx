@@ -1,6 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { PaginationControlsProps } from '../types/Props';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { PaginationControlsProps } from "../types/Props";
 
 const PaginationControls = ({
   currentPage,
@@ -26,13 +29,13 @@ const PaginationControls = ({
         {renderPageNumbers().map((page, index) => (
           <button
             key={index}
-            onClick={() => page !== '...' && setCurrentPage(Number(page))}
+            onClick={() => page !== "..." && setCurrentPage(Number(page))}
             className={`px-5 py-2 ${
               page === currentPage
-                ? 'bg-indigo-100 text-indigo-600'
-                : page === '...'
-                ? 'text-gray-500 cursor-default'
-                : 'text-gray-600 hover:bg-gray-100'
+                ? "bg-indigo-100 text-indigo-600"
+                : page === "..."
+                ? "text-gray-500 cursor-default"
+                : "text-gray-600 hover:bg-gray-100"
             } text-[12.5px]`}
           >
             {page}
@@ -40,7 +43,9 @@ const PaginationControls = ({
         ))}
 
         <button
-          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
+          onClick={() =>
+            currentPage < totalPages && setCurrentPage(currentPage + 1)
+          }
           className="px-3 py-2 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
         >
           Next <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
@@ -56,8 +61,8 @@ const PaginationControls = ({
               onClick={() => setItemsPerPage(value)}
               className={`px-4 py-2 text-sm ${
                 itemsPerPage === value
-                  ? 'bg-indigo-100 text-indigo-600'
-                  : 'bg-white text-gray-600 hover:bg-gray-50'
+                  ? "bg-indigo-100 text-indigo-600"
+                  : "bg-white text-gray-600 hover:bg-gray-50"
               } text-[12.5px]`}
             >
               {value}

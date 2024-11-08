@@ -8,6 +8,16 @@ const StockQueryForm = ({
   setQuery,
   query,
 }: StockQueryFormProps) => {
+  const handleQueryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const input = e.target.value;
+    const regex = /\b(AND|OR|and|or)\b$/;
+
+    if (regex.test(input.trimEnd())) {
+      setQuery(input + "\n");
+    } else {
+      setQuery(input);
+    }
+  };
   return (
     <div className="p-4">
       {query && (
@@ -30,7 +40,7 @@ const StockQueryForm = ({
         <div className="md:grid md:grid-cols-5 md:gap-4 w-full flex flex-col gap-8">
           <textarea
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleQueryChange}
             className="col-span-3 p-3 border-[1px] border-gray-300 rounded-md min-h-[120px] resize-none focus:ring-[0.1px] focus:ring-indigo-500 focus:border-indigo-500 w-full h-[180px] focus:outline-none"
             placeholder="Enter your search query..."
           />
