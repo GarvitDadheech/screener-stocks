@@ -1,46 +1,35 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faSearch, faUser, faUserAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { faCaretDown, faSearch, faUser} from '@fortawesome/free-solid-svg-icons';
 export const NavBar = () => {
-  return (
-    <div className="bg-white w-full px-4 py-3 md:h-12 md:px-20 flex justify-between items-center">
-      <div className="flex items-center gap-x-4 md:gap-x-10">
-        <a href="#" className="block">
-          <img
-            src="https://cdn-static.screener.in/img/logo-black.f44abb4998d1.svg"
-            alt="Logo"
-            className="w-28 md:w-auto"
-          />
-        </a>
-        <div className="hidden md:flex gap-x-6 items-center">
-          <a href="#" className="text-sm text-gray-700 hover:text-gray-900">
-            FEED
-          </a>
-          <a href="#" className="text-sm text-gray-700 hover:text-gray-900">
-            SCREENS
-          </a>
-          <a href="#" className="text-sm text-gray-700 hover:text-gray-900 flex items-center gap-x-2">
-            <span>TOOLS</span>
-            <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
-          </a>
+    return (
+        <div className="h-[3rem] w-[100%] px-20 flex justify-between bg-white items-center">
+            <div className='flex gap-x-10'>
+                <a href="#"><img src="https://cdn-static.screener.in/img/logo-black.f44abb4998d1.svg" alt="Logo" 
+                    style={{ width: '161px', height: '25px' }}/>
+                </a>
+                <a href="#" style={{ color: '#606F7B'}} className="pt-[5px] text-sm tracking-wider">FEED</a>
+                <a href="#" style={{ color: '#606F7B' }} className="pt-[5px] text-sm tracking-wider">SCREENS</a>
+                <a href="#" style={{ color: '#606F7B' }} className="pt-[5px] text-sm tracking-wider flex gap-x-2 items-center">
+                    <div>TOOLS</div>
+                    <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
+                </a>
+            </div>
+            <div className='flex gap-x-2 justify-between'>
+                <div className='flex gap-x-6 justify-between items-center border border-slate-400 rounded-md mr- h-8 px-2 '>
+                    <FontAwesomeIcon icon={faSearch} size="sm" color="#333" />
+                    <input
+                        type="text"
+                        placeholder="Search for a company"
+                        style={{ outline: 'none' }}
+                        className="placeholder:text-gray-500 placeholder:text-sm w-40" 
+                    />
+                </div>
+                <div className='flex gap-x-4 border border-slate-400 rounded-md w-32 justify-center  cursor-pointer items-center'>
+                    <FontAwesomeIcon icon={faUser} className="text-purple-900 text-sm" />
+                    <div className='text-sm'>Garvit</div>
+                    <FontAwesomeIcon icon={faCaretDown} className="text-sm" />
+                </div>
+            </div>
         </div>
-      </div>
-      <div className="flex items-center gap-x-4 md:gap-x-6">
-        <div className="hidden md:flex items-center border border-gray-400 rounded-md px-2 h-8">
-          <FontAwesomeIcon icon={faSearch} size="sm" className="text-gray-600" />
-          <input
-            type="text"
-            placeholder="Search for a company"
-            className="outline-none text-sm text-gray-500 placeholder:text-gray-500 w-40"
-          />
-        </div>
-        <div className="flex items-center border border-gray-400 rounded-md px-2 py-1 cursor-pointer">
-          <FontAwesomeIcon icon={faUser} className="text-purple-900 text-sm" />
-          <span className="text-sm text-gray-700 ml-2">Garvit</span>
-          <FontAwesomeIcon icon={faCaretDown} className="text-sm text-gray-700 ml-2" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
+    )
+}

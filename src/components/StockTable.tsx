@@ -1,51 +1,16 @@
 import { faArrowDown, faArrowUp, faChevronLeft, faChevronRight, faCloud, faFileExport, faFilter, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef, useState } from 'react';
-
-interface Stock {
-  Ticker: string;
-  "Market Capitalization (B)": number;
-  P: {
-    "E Ratio": number;
-  };
-  "ROE (%)": number;
-  "Debt-to-Equity Ratio": number;
-  "Dividend Yield (%)": number;
-  "Revenue Growth (%)": number;
-  "EPS Growth (%)": number;
-  "Current Ratio": number;
-  "Gross Margin (%)": number;
-}
+import { useState } from 'react';
+import {Stock} from '../types/Stock'
 
 export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const tickerColumnRef = useRef<HTMLTableCellElement>(null);
-
+  
   const totalPages = Math.ceil(stocks.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = stocks.slice(indexOfFirstItem, indexOfLastItem);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (tickerColumnRef.current) {
-        const tableRect = tickerColumnRef.current.closest('table')?.getBoundingClientRect();
-        const tickerRect = tickerColumnRef.current.getBoundingClientRect();
-        if (tableRect && tickerRect) {
-          const isSticky =
-            tickerRect.top < tableRect.top &&
-            tickerRect.bottom > tableRect.bottom;
-          tickerColumnRef.current.style.position = isSticky ? 'sticky' : 'static';
-          tickerColumnRef.current.style.left = isSticky ? '0' : 'auto';
-          tickerColumnRef.current.style.zIndex = isSticky ? '1' : 'auto';
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const renderPageNumbers = () => {
     const pages = [];
@@ -88,8 +53,8 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
   };
 
   return (
-    <div className="w-full mb-5 overflow-x-auto">
-      <div className="bg-white w-full rounded-xl flex flex-col">
+    <div className="w-full mb-5">
+      <div className="bg-white  w-full rounded-xl flex flex-col">
         <div className="flex justify-between items-center p-6 pb-5">
           <h2 className="text-4xl font-medium text-gray-800">Query Results</h2>
           <button className="bg-[#645DF9] text-white px-4 py-2 rounded-lg flex items-center gap-1">
@@ -98,11 +63,11 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
           </button>
         </div>
         
-        <div className="px-6 py-2 flex-col md:flex justify-between items-center">
+        <div className="px-6 py-2 flex justify-between items-center">
           <span className="text-sm text-gray-600">
             {stocks.length} results found: Showing page {currentPage} of {totalPages}
           </span>
-          <div className="flex gap-1 md:gap-3">
+          <div className="flex gap-3">
             <button className="border rounded px-4 py-1.5 text-xs text-gray-500 flex items-center gap-x-3 font-semibold">
               <FontAwesomeIcon icon={faFilter} className='text-sm'/>
               INDUSTRY
@@ -123,31 +88,25 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
             <thead>
               <tr className="border-b">
                 <th className="px-6 py-1 text-left text-[12.5px] font-medium text-indigo-600">S.No.</th>
-                <th
-                  ref={tickerColumnRef}
-                  className="px-6 py-1 text-left text-[12.5px] font-medium text-indigo-600"
-                >
-                  Ticker
-                </th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>CMP</span> Rs.</th>
+                <th className="px-6 py-1 text-left text-[12.5px] font-medium text-indigo-600 ">Ticker</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Mar Cap.</span> Rs. Cr.</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-indigo-600 ">P/E</th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Mar Cap</span> Rs.Cr.</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Curr Ratio</span></th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Db-to-Eq</span> %</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Div Yld</span> %</th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>NP Qtr</span> Rs.Cr.</th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Qtr Profit Var</span> %</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Gross Margin</span> %</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Rev Grwth</span> %</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>EPS Grwth</span></th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>ROE</span> %</th>
               </tr>
             </thead>
             <tbody>
-            {currentItems.map((stock, index) => (
+              {currentItems.map((stock, index) => (
                 <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
                   <td className="px-6 py-1 text-[12.5px]">
                     {indexOfFirstItem + index + 1}.
                   </td>
-                  <td
-                    ref={tickerColumnRef}
-                    className="px-6 py-1 sticky left-0 bg-white z-1"
-                  >
+                  <td className="px-6 py-1">
                     <a href="#" className="text-[12.5px] text-indigo-600 hover:text-indigo-900 font-light">
                       {stock.Ticker}
                     </a>
@@ -159,10 +118,16 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
                     {stock.P["E Ratio"].toFixed(2)}
                   </td>
                   <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
-                    {(stock["Market Capitalization (B)"] * 100).toFixed(2)}
+                    {(stock["Current Ratio"].toFixed(2))}
+                  </td>
+                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
+                    {stock["Debt-to-Equity Ratio"].toFixed(2)}
                   </td>
                   <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
                     {stock["Dividend Yield (%)"].toFixed(2)}
+                  </td>
+                  <td className="px-6 py-1 text-[12.5px] text-gray-900 text-right">
+                    {stock["Gross Margin (%)"].toFixed(2)}
                   </td>
                   <td className="px-6 py-1 text-right">
                     <div className="flex items-center justify-end">
@@ -206,8 +171,8 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
           </table>
         </div>
 
-        <div className="px-6 py-2 flex-col md:flex justify-between items-center space-y-6  mt-7 ">
-          <div className="flex items-center  border border-slate-300  rounded-md h-full flex-wrap">
+        <div className="px-6 py-2 flex justify-between items-center  mt-7 ">
+          <div className="flex items-center  border border-slate-300  rounded-md h-full">
               {currentPage != 1 && <button onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
                 className="px-3 py-1 rounded text-gray-600 hover:bg-gray-100 flex items-center gap-x-2 text-sm"
               >
