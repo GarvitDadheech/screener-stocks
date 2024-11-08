@@ -1,9 +1,8 @@
-import { faArrowDown, faArrowUp, faCloud, faFileExport, faFilter, faGear } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Stock} from '../types/Stock'
 import { usePagination } from '../hooks/usePagination';
 import PaginationControls from './PaginationControls';
 import StockRow from './StockRow';
+import TableHeaderInfo from './TableHeaderInfo';
 
 export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
   const {
@@ -22,34 +21,7 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
   return (
     <div className="w-full mb-5">
       <div className="bg-white  w-full rounded-xl flex flex-col">
-        <div className="flex justify-between items-center p-6 pb-5">
-          <h2 className="text-4xl font-medium text-gray-800">Query Results</h2>
-          <button className="bg-[#645DF9] text-white px-4 py-2 rounded-lg flex items-center gap-1">
-            <FontAwesomeIcon icon={faCloud}/>
-            <span className="text-[0.9rem] font-medium font-sans p-1 tracking-wider">SAVE THIS QUERY</span>
-          </button>
-        </div>
-        
-        <div className="px-6 py-2 flex justify-between items-center">
-          <span className="text-sm text-gray-600">
-            {stocks.length} results found: Showing page {currentPage} of {totalPages}
-          </span>
-          <div className="flex gap-3">
-            <button className="border rounded px-4 py-1.5 text-xs text-gray-500 flex items-center gap-x-3 font-semibold">
-              <FontAwesomeIcon icon={faFilter} className='text-sm'/>
-              INDUSTRY
-            </button>
-            <button className="border rounded px-4 py-1.5 text-xs text-gray-500 flex items-center gap-x-3 font-semibold">
-            <FontAwesomeIcon icon={faFileExport} className='text-sm'/>
-              EXPORT
-            </button>
-            <button className="border border-indigo-600 rounded px-4 py-1.5 text-xs text-indigo-600 flex items-center gap-x-3 font-semibold">
-              <FontAwesomeIcon icon={faGear} className='text-sm'/>
-              EDIT COLUMNS
-            </button>
-          </div>
-        </div>
-
+        <TableHeaderInfo totalResults={stocks.length} currentPage={currentPage} />
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>

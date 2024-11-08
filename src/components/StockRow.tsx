@@ -1,17 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { Stock } from '../types/Stock';
+import { StockRowProps } from '../types/Props';
 
-interface StockRowProps {
-  stock: Stock;
-  index: number;
-  currFirstIndex : number;
-}
 
 const StockRow = ({ stock, index,currFirstIndex }: StockRowProps) => {
   return (
     <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
-      <td className="px-6 py-1 text-[12.5px]">{index + 1}.</td>
+      <td className="px-6 py-1 text-[12.5px]">{currFirstIndex+index + 1}.</td>
       <td className="px-6 py-1">
         <a href="#" className="text-[12.5px] text-indigo-600 hover:text-indigo-900 font-light">
           {stock.Ticker}

@@ -1,14 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
-interface PaginationControlsProps {
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
-  renderPageNumbers: () => (string | number)[];
-  setItemsPerPage: (value: number) => void;
-  itemsPerPage: number;
-}
+import { PaginationControlsProps } from '../types/Props';
 
 const PaginationControls = ({
   currentPage,
