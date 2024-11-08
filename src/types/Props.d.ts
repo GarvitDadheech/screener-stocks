@@ -24,3 +24,5 @@ export interface StockQueryFormProps {
   setQuery: React.Dispatch<React.SetStateAction<string>>;
   query: string;
 }
+
+export type SortDirection = 'asc' | 'desc';
