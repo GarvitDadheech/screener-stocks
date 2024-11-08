@@ -1,56 +1,21 @@
 import { faArrowDown, faArrowUp, faChevronLeft, faChevronRight, faCloud, faFileExport, faFilter, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
 import {Stock} from '../types/Stock'
+import { usePagination } from '../hooks/usePagination';
 
 export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  
-  const totalPages = Math.ceil(stocks.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = stocks.slice(indexOfFirstItem, indexOfLastItem);
+  const {
+    currentPage,
+    itemsPerPage,
+    totalPages,
+    currentItems,
+    renderPageNumbers,
+    setCurrentPage,
+    setItemsPerPage,
+  } = usePagination(stocks.length); 
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      if (currentPage <= 4) {
-        for (let i = 1; i <= 5; i++) {
-          pages.push(i);
-        }
-        pages.push('...');
-        pages.push(totalPages - 1);
-        pages.push(totalPages);
-      } else if (currentPage >= totalPages - 3) {
-        pages.push(1);
-        pages.push(2);
-        pages.push('...');
-        for (let i = totalPages - 4; i <= totalPages; i++) {
-          pages.push(i);
-        }
-      } else {
-        pages.push(1);
-        pages.push(2);
-        pages.push('...');
-        pages.push(currentPage - 3);
-        pages.push(currentPage - 2);
-        pages.push(currentPage - 1);
-        pages.push(currentPage);
-        pages.push(currentPage + 1);
-        pages.push(currentPage + 2);
-        pages.push(currentPage + 3);
-        pages.push('...');
-        pages.push(totalPages - 1);
-        pages.push(totalPages);
-      }
-    }
-    return pages;
-  };
+  const currentData = stocks.slice(currentItems.indexOfFirstItem, currentItems.indexOfLastItem);
+
 
   return (
     <div className="w-full mb-5">
@@ -92,19 +57,19 @@ export const StockTable = ({ stocks }: { stocks: Stock[] }) => {
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Mar Cap.</span> Rs. Cr.</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-indigo-600 ">P/E</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Curr Ratio</span></th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Db-to-Eq</span> %</th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Db-to-Eq</span></th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Div Yld</span> %</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Gross Margin</span> %</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>Rev Grwth</span> %</th>
-                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>EPS Grwth</span></th>
+                <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>EPS Grwth</span> %</th>
                 <th className="px-6 py-1 text-right text-[12.5px] font-medium text-gray-500 "><span className='text-indigo-600'>ROE</span> %</th>
               </tr>
             </thead>
             <tbody>
-              {currentItems.map((stock, index) => (
+              {currentData.map((stock: Stock, index: number) => (
                 <tr key={stock.Ticker} className={index % 2 === 0 ? 'bg-[#F8F8FC]' : ''}>
                   <td className="px-6 py-1 text-[12.5px]">
-                    {indexOfFirstItem + index + 1}.
+                    {currentItems.indexOfFirstItem + index + 1}.
                   </td>
                   <td className="px-6 py-1">
                     <a href="#" className="text-[12.5px] text-indigo-600 hover:text-indigo-900 font-light">
