@@ -19,25 +19,25 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           {stock.Ticker}
         </a>
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock["Market Capitalization (B)"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock.P["E Ratio"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock["Current Ratio"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock["Debt-to-Equity Ratio"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock["Dividend Yield (%)"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         {stock["Gross Margin (%)"].toFixed(2)}
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         <div className="flex items-center justify-end">
           {stock["Revenue Growth (%)"] > 0 ? (
             <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
@@ -55,7 +55,7 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           </span>
         </div>
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         <div className="flex items-center justify-end">
           {stock["EPS Growth (%)"] > 0 ? (
             <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
@@ -71,7 +71,7 @@ const StockRow = ({ stock, index, currFirstIndex }: StockRowProps) => {
           </span>
         </div>
       </td>
-      <td className="px-6 py-1 text-right text-[12.5px] text-gray-900">
+      <td className="px-6 py-[6px] text-right text-[12.5px] text-gray-900">
         <div className="flex items-center justify-end">
           {stock["ROE (%)"] > 0 ? (
             <FontAwesomeIcon icon={faArrowUp} className="text-xs mr-1" />
